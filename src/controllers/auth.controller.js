@@ -23,6 +23,8 @@ const userRegister = async (req, res) => {
       password,
     });
 
+    console.log(newUser);
+
     if (!newUser) {
       return res.status(400).json(new ApiError(400, "user not created"));
     }
@@ -46,8 +48,8 @@ const userRegister = async (req, res) => {
       .status(200)
       .json(
         new ApiResponse(201, {
-          user: { email, username },
-          message: "User Registration Successfully",
+          user: { email, username,hashedToken },
+          message: "User Registration Successfully, Please Verify Your Email on Your Email",
         }),
       );
   } catch (error) {
